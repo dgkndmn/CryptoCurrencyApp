@@ -48,8 +48,6 @@ for currency in crypto:
     combobox['values'] = (*combobox['values'], currency["currency"])
     currencies.append(currency["currency"])
 
-
-
 def search_button():
     selected_currency = combobox.get()
     if(selected_currency not in currencies):
@@ -59,12 +57,6 @@ def search_button():
         for currency in crypto:
             if currency["currency"] == selected_currency:
                 entry_var.set(f"Price: {currency['price']}")
-
-
-
-
-
-
 
 def clear_button():
     entry_var.set("Price: ")
@@ -77,13 +69,10 @@ entry.insert(0, "Price: ")
 entry.config(state="readonly")
 entry.place(y=123, x=177)
 
-
 button1 = Button(text="Search",font=font,width=8,height=1,command=search_button)
 button1.place(x=125,y=165)
 
 button2 = Button(text="Clear",font=font,width=8,height=1,command=clear_button)
 button2.place(x=125,y=200)
-
-
 
 window.mainloop()
