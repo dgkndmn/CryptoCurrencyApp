@@ -51,7 +51,7 @@ for currency in crypto:
 def search_button():
     selected_currency = combobox.get()
     if(selected_currency not in currencies):
-        messagebox.showwarning(title="Error!",message="Sorry, there is not such a currency in the list.")
+        messagebox.showwarning(title="Error!",message="Sorry, there is no such a currency in the list.")
         clear_button()
     else:
         for currency in crypto:
