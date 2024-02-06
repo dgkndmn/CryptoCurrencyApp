@@ -1,11 +1,11 @@
 import tkinter.ttk
 from tkinter import *
+from tkinter import messagebox
+
 import requests
 from PIL import Image, ImageTk
 
 # where did i get the data from: https://raw.githubusercontent.com/atilsamancioglu/K21-JSONDataSet/master/crypto.json
-
-
 #UI
 window = Tk()
 window.geometry("350x300")
@@ -37,29 +37,32 @@ entry.config(state="readonly")
 entry.place(y=123,x=177)
 
 
-
-
-#functionality
+#functionality and buttons
 response = requests.get("https://raw.githubusercontent.com/atilsamancioglu/K21-JSONDataSet/master/crypto.json")
-
 def get_data():
     return response.json()
 
 crypto = get_data()
-
+currencies = []
 for currency in crypto:
     combobox['values'] = (*combobox['values'], currency["currency"])
-
+    currencies.append(currency["currency"])
 
 
 
 def search_button():
-
     selected_currency = combobox.get()
-    for currency in crypto:
+    if(selected_currency not in currencies):
+        messagebox.showwarning(title="Error!",message="Sorry, there is not such a currency in the list.")
+        clear_button()
+    else:
+        for currency in crypto:
+            if currency["currency"] == selected_currency:
+                entry_var.set(f"Price: {currency['price']}")
 
-        if currency["currency"] == selected_currency:
-            entry_var.set(f"Price: {currency['price']}")
+
+
+
 
 
 
